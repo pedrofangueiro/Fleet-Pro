@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Fleet Pro</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="wrap">
+<div id="splash" aria-hidden="true"><div class="spw"><span class="spt">Fleet Pro</span><span class="sps">Conferência de frota</span></div></div>
+  <header class="top">
+    <div class="lft"><button id="menu" type="button" class="ghost icon" aria-label="Menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><div class="brand"><span class="bt"><b>Fleet Pro</b><small id="bsub">Conferência de frota</small></span></div></div>
+    <div class="hbtns"><button id="ex" type="button" class="ghost">Ver exemplo</button><button id="novo" type="button" class="ghost hidden">Conferir novamente</button></div>
+  </header>
+
+  <section class="step" aria-labelledby="h1s">
+    <div class="sh"><h2 id="h1s">Veículos disponíveis</h2><span id="listacount" class="count">Sem lista</span></div>
+    <input id="listafile" type="file" class="vh" accept="image/*,application/pdf,.pdf,.xlsx,.xls,.csv,.txt,text/plain,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel">
+    <label class="drop" for="listafile"><span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg></span><span class="tx"><b>Carregar lista</b><span>Foto, Excel, PDF ou texto</span></span></label>
+    <details id="listadet">
+      <summary>Ver ou escrever matrículas</summary>
+      <textarea id="lista" placeholder="AA-00-AA" aria-label="Matrículas dos veículos disponíveis, uma por linha"></textarea>
+      <p class="hint">Uma matrícula por linha. Confirma a lista antes de conferir.</p>
+    </details>
+  </section>
+
+  <section class="step" aria-labelledby="h1i">
+    <div class="sh"><h2 id="h1i">Veículos em impro <span class="opt">opcional</span></h2><span id="improcount" class="count">Sem lista</span></div>
+    <input id="improfile" type="file" class="vh" accept="image/*,application/pdf,.pdf,.xlsx,.xls,.csv,.txt,text/plain,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel">
+    <label class="drop" for="improfile"><span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></span><span class="tx"><b>Carregar lista</b><span>Foto, Excel, PDF ou texto</span></span></label>
+    <details id="improdet">
+      <summary>Ver ou escrever matrículas</summary>
+      <textarea id="impro" placeholder="AA-00-AA" aria-label="Matrículas das veículos em impro, uma por linha"></textarea>
+      <p class="hint">Uma viatura por linha, com as observações a seguir à matrícula. No resultado aparecem a amarelo, marcadas como impro.</p>
+    </details>
+  </section>
+
+  <section class="step" aria-labelledby="h2s">
+    <div class="sh"><h2 id="h2s">Fotos das matrículas</h2><span id="fotocount" class="count">0 fotos</span></div>
+    <input id="fotos" type="file" class="vh" accept="image/*" multiple>
+    <label class="drop" for="fotos"><span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8a2 2 0 0 1 2-2h2l1.5-2h5L16 6h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><circle cx="12" cy="12.5" r="3.5"/></svg></span><span class="tx"><b>Adicionar fotos</b><span>Escolhe várias de uma vez na galeria</span></span></label>
+    <div class="fbar hidden" id="fbarw"><i id="fbar"></i></div>
+    <p class="hint" id="fotoinfo"></p>
+    <div id="thsum" class="thsum hidden"></div>
+    <div id="thumbs" class="thumbs hidden"></div>
+    <button id="limpar" type="button" class="hidden link" style="align-self:flex-start">Limpar fotos</button>
+  </section>
+
+  <div id="status" role="status" aria-live="polite"></div>
+
+  <section id="out" class="step hidden" aria-labelledby="h3s">
+    <div class="sh"><h2 id="h3s">Resultado</h2><span id="rtime" class="count"></span></div>
+    <div class="row acts"><button id="xl" type="button" class="ghost">Descarregar Excel</button><button id="cp" type="button" class="ghost">Guardar relatório no Fleet Pro</button></div>
+    <div class="sum" id="sum"></div>
+    <div id="res"></div>
+    <input id="q" type="search" class="search" placeholder="Procurar matrícula" autocomplete="off" aria-label="Procurar matrícula">
+    <div id="rowsbox"></div>
+    <details>
+      <summary>Corrigir leituras à mão</summary>
+      <textarea id="lidas" aria-label="Matrículas lidas nas fotos"></textarea>
+      <div class="row" style="margin-top:8px"><button id="re" type="button">Conferir de novo</button></div>
+    </details>
+  </section>
+</div>
+
+<div id="drawer" class="drawer hidden">
+  <div class="dback" id="dback"></div>
+  <nav class="dpanel" aria-label="Menu">
+    <div class="dtop"><span class="brand"><span class="bt"><b>Fleet Pro</b></span></span><button id="dclose" type="button" class="ghost icon" aria-label="Fechar menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="duser"><span class="avatar" id="davatar">?</span><div><b id="dname"></b><small id="dcomp"></small></div></div>
+    <button type="button" class="ditem" data-go="perfil"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Perfil</span></button>
+    <button type="button" class="ditem" data-go="relatorios"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg><span>Relatórios</span></button>
+    <button type="button" class="ditem" data-go="config"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>Configurações</span></button>
+    <div class="dfoot"><button type="button" class="ditem" id="logout"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3"/><path d="M10 17l-5-5 5-5"/><path d="M5 12h11"/></svg><span>Terminar sessão</span></button></div>
+  </nav>
+</div>
+<div id="sheet" class="sheet hidden" role="dialog" aria-modal="true" aria-labelledby="sheettitle">
+  <div class="in">
+    <div class="shead"><button id="sheetback" type="button" class="link">← Voltar</button><h2 id="sheettitle"></h2><span></span></div>
+    <div id="sheetbody" class="sbody"></div>
+  </div>
+</div>
+<div class="dock"><div class="in"><button class="primary" id="go" type="button">Conferir</button></div></div>
+<script src="vendor/xlsx.full.min.js"></script>
+<script src="vendor/pdf.js"></script>
+<script src="js/app.js"></script>
+<script src="js/menu.js"></script>
+</body>
+</html>

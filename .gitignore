@@ -1,0 +1,18 @@
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Segredos (nunca guardar no GitHub)
+.env
+.env.*
+*.key
+*.pem
+
+# Editor
+.idea/
+*.swp
+
+# Node / Python (se vierem a ser usados)
+node_modules/
+__pycache__/
+*.pyc
