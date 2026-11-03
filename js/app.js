@@ -307,7 +307,7 @@ $("listafile").addEventListener("change",async()=>{
 });
 $("improfile").addEventListener("change",async()=>{
   const f=$("improfile").files[0]; if(!f) return; $("improfile").value="";
-  setStatus("A ler as veículos em impro…");
+  setStatus("A ler os veículos em impro…");
   try{ const r=await readPlatesFile(f,"impro"); if(!r.found.length) throw {code:"empty"}; addToImpro(r.found); r.tot=NaN; fileStatus(r); }
   catch(e){ fileError(e); }
 });

@@ -299,7 +299,7 @@ textarea,.search{border-radius:8px;background:var(--surface);font-size:.92rem}
     <label class="drop" for="improfile"><span class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></span><span class="tx"><b>Carregar lista</b><span>Foto, Excel, PDF ou texto</span></span></label>
     <details id="improdet">
       <summary>Ver ou escrever matrículas</summary>
-      <textarea id="impro" placeholder="AA-00-AA" aria-label="Matrículas das veículos em impro, uma por linha"></textarea>
+      <textarea id="impro" placeholder="AA-00-AA" aria-label="Matrículas dos veículos em impro, uma por linha"></textarea>
       <p class="hint">Uma viatura por linha, com as observações a seguir à matrícula. No resultado aparecem a amarelo, marcadas como impro.</p>
     </details>
   </section>
@@ -662,7 +662,7 @@ $("listafile").addEventListener("change",async()=>{
 });
 $("improfile").addEventListener("change",async()=>{
   const f=$("improfile").files[0]; if(!f) return; $("improfile").value="";
-  setStatus("A ler as veículos em impro…");
+  setStatus("A ler os veículos em impro…");
   try{ const r=await readPlatesFile(f,"impro"); if(!r.found.length) throw {code:"empty"}; addToImpro(r.found); r.tot=NaN; fileStatus(r); }
   catch(e){ fileError(e); }
 });
@@ -1177,7 +1177,7 @@ const STR_RULES=[
  ["Corrigir leituras à mão","Fix readings by hand"],["Conferir de novo","Check again"],["Limpar fotos","Clear photos"],["← Voltar","← Back"],["Procurar matrícula","Search plate"],
  ["Uma matrícula por linha. Confirma a lista antes de conferir.","One plate per line. Check the list before running the check."],
  ["Uma viatura por linha, com as observações a seguir à matrícula. No resultado aparecem a amarelo, marcadas como impro.","One vehicle per line, with notes after the plate. In the result they show in yellow, marked as impro."],
- ["Matrículas dos veículos disponíveis, uma por linha","Plates of available vehicles, one per line"],["Matrículas das veículos em impro, uma por linha","Plates of vehicles in impro, one per line"],["Matrículas lidas nas fotos","Plates read from the photos"],
+ ["Matrículas dos veículos disponíveis, uma por linha","Plates of available vehicles, one per line"],["Matrículas dos veículos em impro, uma por linha","Plates of vehicles in impro, one per line"],["Matrículas lidas nas fotos","Plates read from the photos"],
  ["Cada foto é validada logo que a adicionas: ✓ lida, ✗ tira outra.","Each photo is checked as soon as you add it: ✓ read, ✗ take another."],
  ["As matrículas lidas antes ficaram guardadas. Podes juntar mais fotos.","Plates read earlier were saved. You can add more photos."],
  [" ⚠ repetida"," ⚠ duplicate"],[" ⚠ confirma"," ⚠ check"],
@@ -1194,7 +1194,7 @@ const STR_RULES=[
  ["Matrícula lida (corrige se estiver errada)","Plate read (fix it if wrong)"],["Consegues ver a matrícula? Escreve-a aqui","Can you see the plate? Type it here"],
  ["Se a foto tiver mais do que um carro, separa as matrículas com vírgulas.","If the photo has more than one car, separate the plates with commas."],["Guardar matrícula","Save plate"],["Remover foto","Remove photo"],
  ["Escreve no formato AA-00-AA (2 letras, 2 números, 2 letras).","Use the format AA-00-AA (2 letters, 2 digits, 2 letters)."],
- ["A ler a lista em partes, para ver melhor cada letra…","Reading the list in parts to see each letter better…"],["A ler a lista…","Reading the list…"],["A ler as veículos em impro…","Reading the impro vehicles…"],
+ ["A ler a lista em partes, para ver melhor cada letra…","Reading the list in parts to see each letter better…"],["A ler a lista…","Reading the list…"],["A ler os veículos em impro…","Reading the impro vehicles…"],
  ["2.ª leitura feita: as dúvidas que ficam precisam de ser vistas por ti.","2nd reading done: the remaining doubts need your eyes."],
  ["Exemplo inventado: sem fotos reais. Repara no IJ-56-KL (a foto mostra outro carro) e no OR-90-ST (o mesmo carro que o QR-90-ST da lista).","Made-up example with no real photos. Look at IJ-56-KL (the photo shows another car) and OR-90-ST (the same car as QR-90-ST on the list)."],
  ["Pronto para uma nova conferência.","Ready for a new check."],["Relatório guardado no Fleet Pro. Consulta-o em Menu → Relatórios.","Report saved in Fleet Pro. Find it in Menu → Reports."],["Não foi possível guardar o relatório.","Couldn't save the report."],["Guardar relatório no Fleet Pro","Save report in Fleet Pro"],["Relatório Excel pronto.","Excel report ready."],

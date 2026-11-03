@@ -49,3 +49,10 @@ O Fleet Pro foi construído com o Claude (Anthropic): interface, lógica de conf
 - [SheetJS](https://sheetjs.com/) — leitura e exportação de Excel
 
 As bibliotecas estão na pasta `vendor/`. Não há servidor próprio nem passo de compilação. Os dados da sessão ficam no navegador.
+
+## Nota sobre o login
+
+O ecrã "Entrar" não é uma conta com palavra-passe. Serve apenas para
+identificar a empresa, a estação e o colaborador, para que esses dados
+apareçam no relatório Excel. Não protege o acesso à app: os dados
+ficam guardados no navegador do telemóvel onde a app é usada.
